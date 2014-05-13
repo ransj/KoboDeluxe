@@ -23,8 +23,7 @@ WEBP_LIBRARY_PATH := external/libwebp-0.3.0
 LOCAL_C_INCLUDES := $(LOCAL_PATH)
 LOCAL_CFLAGS := -DLOAD_BMP -DLOAD_GIF -DLOAD_LBM -DLOAD_PCX -DLOAD_PNM \
                 -DLOAD_TGA -DLOAD_XCF -DLOAD_XPM -DLOAD_XV
-LOCAL_CFLAGS += -O3 -fstrict-aliasing
-#LOCAL_CFLAGS += -O3 -fstrict-aliasing -fprefetch-loop-arrays
+LOCAL_CFLAGS += -O3 -fstrict-aliasing -fprefetch-loop-arrays
 
 LOCAL_SRC_FILES := $(notdir $(filter-out %/showimage.c, $(wildcard $(LOCAL_PATH)/*.c)))
 
@@ -115,7 +114,6 @@ ifeq ($(SUPPORT_WEBP),true)
     LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(WEBP_LIBRARY_PATH)/src
     LOCAL_CFLAGS += -DLOAD_WEBP
     LOCAL_STATIC_LIBRARIES += webp
-    
 endif
 
 LOCAL_EXPORT_C_INCLUDES += $(LOCAL_C_INCLUDES)
