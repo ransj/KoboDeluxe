@@ -26,14 +26,14 @@
 #include "glSDL.h"
 #include "config.h"
 
-#define KEY_KP_DOWN		SDLK_KP_2
-#define KEY_KP_LEFT		SDLK_KP_4
-#define KEY_KP_UP		SDLK_KP_8
-#define KEY_KP_RIGHT		SDLK_KP_6
-#define KEY_KP_DL		SDLK_KP_1
-#define KEY_KP_DR		SDLK_KP_3
-#define KEY_KP_UL		SDLK_KP_7
-#define KEY_KP_UR		SDLK_KP_9
+#define KEY_KP_DOWN		SDLK_KP2
+#define KEY_KP_LEFT		SDLK_KP4
+#define KEY_KP_UP		SDLK_KP8
+#define KEY_KP_RIGHT		SDLK_KP6
+#define KEY_KP_DL		SDLK_KP1
+#define KEY_KP_DR		SDLK_KP3
+#define KEY_KP_UL		SDLK_KP7
+#define KEY_KP_UR		SDLK_KP9
 
 
 enum buttons_t

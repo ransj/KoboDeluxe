@@ -1279,10 +1279,10 @@ void KOBO_main::close_js()
 
 	if(!joystick)
 		return;
-// ADD BY RANSJ
-//	if(SDL_JoystickOpened(0))
-//		SDL_JoystickClose(joystick);
-//	joystick = NULL;
+
+	if(SDL_JoystickOpened(0))
+		SDL_JoystickClose(joystick);
+	joystick = NULL;
 
 	SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
 }
@@ -1626,10 +1626,7 @@ void kobo_gfxengine_t::frame()
 				break;
 			  case SDLK_RETURN:
 				ms = SDL_GetModState();
-				// ADD BY RANSJ
-//				if(ms & (KMOD_CTRL | KMOD_SHIFT | KMOD_META))
-//					break;
-				if(ms & (KMOD_CTRL | KMOD_SHIFT))
+				if(ms & (KMOD_CTRL | KMOD_SHIFT | KMOD_META))
 					break;
 				if(!(ms & KMOD_ALT))
 					break;
@@ -1640,7 +1637,7 @@ void kobo_gfxengine_t::frame()
 						OS_RESTART_VIDEO;
 				stop();
 				return;
-			  case SDLK_PRINTSCREEN:
+			  case SDLK_PRINT:
 			  case SDLK_SYSREQ:
 // FIXME: Doesn't this trigger when entering names and stuff...?
 			  case SDLK_s:
@@ -1651,7 +1648,7 @@ void kobo_gfxengine_t::frame()
 			}
 			k = gamecontrol.map(ev.key.keysym.sym);
 			gamecontrol.press(k);
-			gsm.press(k, ev.key.keysym.unused);
+			gsm.press(k, ev.key.keysym.unicode);
 			break;
 		  case SDL_KEYUP:
 			if((ev.key.keysym.sym == SDLK_ESCAPE) && km.escape_hammering())

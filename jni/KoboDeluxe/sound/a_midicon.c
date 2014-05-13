@@ -129,7 +129,7 @@ static inline void __press(unsigned ch, unsigned key)
  * Returns the new last key (-1 if none),
  * or -2 if there's no change.
  */
-static inline int __releaseAndroid(unsigned ch, unsigned key)
+static inline int __release(unsigned ch, unsigned key)
 {
 	if(m[ch].prev[key] != -1)
 		m[ch].next[m[ch].prev[key]] = m[ch].next[key];
@@ -157,7 +157,7 @@ static inline int __is_down(unsigned ch, int key)
 	
 static void midicon_note_off(unsigned ch, unsigned pitch, unsigned vel)
 {
-	__releaseAndroid(ch, pitch);
+	__release(ch, pitch);
 	(void)ce_stop(channeltab + MIDI_MAP_CH(ch), 0,
 			(int)pitch, (int)explut[vel]);
 }

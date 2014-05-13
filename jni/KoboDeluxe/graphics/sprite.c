@@ -386,14 +386,13 @@ static int extract_sprite(s_bank_t *bank, unsigned frame,
 		SDL_SetColors(tmp, src->format->palette->colors, 0,
 				src->format->palette->ncolors);
 
-	/*ADD BY RANSJ*/
-//	/* Copy alpha and colorkey */
-//	if(src->flags & SDL_SRCALPHA)
-//		SDL_SetAlpha(tmp, src->flags & (SDL_SRCALPHA | SDL_RLEACCEL),
-//				src->format->alpha);
-//	if(src->flags & SDL_SRCCOLORKEY)
-//		SDL_SetColorKey(tmp, src->flags & (SDL_SRCCOLORKEY | SDL_RLEACCEL),
-//				src->format->colorkey);
+	/* Copy alpha and colorkey */
+	if(src->flags & SDL_SRCALPHA)
+		SDL_SetAlpha(tmp, src->flags & (SDL_SRCALPHA | SDL_RLEACCEL),
+				src->format->alpha);
+	if(src->flags & SDL_SRCCOLORKEY)
+		SDL_SetColorKey(tmp, src->flags & (SDL_SRCCOLORKEY | SDL_RLEACCEL),
+				src->format->colorkey);
 
 	bank->sprites[frame]->surface = tmp;
 
