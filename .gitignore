@@ -1,5 +1,6 @@
 /gen
 /bin
 /proguard
+/obj
 .project.properties
 .DS_Store
