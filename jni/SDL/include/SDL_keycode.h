@@ -44,7 +44,7 @@ typedef Sint32 SDL_Keycode;
 #define SDLK_SCANCODE_MASK (1<<30)
 #define SDL_SCANCODE_TO_KEYCODE(X)  (X | SDLK_SCANCODE_MASK)
 
-typedef enum
+enum
 {
     SDLK_UNKNOWN = 0,
 
@@ -309,7 +309,7 @@ typedef enum
     SDLK_KBDILLUMUP = SDL_SCANCODE_TO_KEYCODE(SDL_SCANCODE_KBDILLUMUP),
     SDLK_EJECT = SDL_SCANCODE_TO_KEYCODE(SDL_SCANCODE_EJECT),
     SDLK_SLEEP = SDL_SCANCODE_TO_KEYCODE(SDL_SCANCODE_SLEEP)
-} SDLKey;;
+};
 
 /**
  * \brief Enumeration of valid key mods (possibly OR'd together).

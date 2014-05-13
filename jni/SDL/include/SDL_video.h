@@ -59,14 +59,6 @@ typedef struct
     void *driverdata;           /**< driver-specific data, initialize to 0 */
 } SDL_DisplayMode;
 
-// ADD BY RANSJ
-typedef enum {
-	SDL_GRAB_QUERY = -1,
-	SDL_GRAB_OFF = 0,
-	SDL_GRAB_ON = 1,
-	SDL_GRAB_FULLSCREEN	/**< Used internally */
-} SDL_GrabMode;
-
 /**
  *  \brief The type used to identify a window
  *
@@ -213,17 +205,6 @@ typedef enum
     SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG      = 0x0004,
     SDL_GL_CONTEXT_RESET_ISOLATION_FLAG    = 0x0008
 } SDL_GLcontextFlag;
-// ADD BY RANSJ
-/** Available for SDL_SetVideoMode() */
-/*@{*/
-#define SDL_ANYFORMAT	0x10000000	/**< Allow any video depth/pixel-format */
-#define SDL_HWPALETTE	0x20000000	/**< Surface has exclusive palette */
-#define SDL_DOUBLEBUF	0x40000000	/**< Set up double-buffered video mode */
-#define SDL_FULLSCREEN	0x80000000	/**< Surface is a full screen display */
-#define SDL_OPENGL      0x00000002      /**< Create an OpenGL rendering context */
-#define SDL_OPENGLBLIT	0x0000000A	/**< Create an OpenGL rendering context and use it for blitting */
-#define SDL_RESIZABLE	0x00000010	/**< This video mode may be resized */
-#define SDL_NOFRAME	0x00000020	/**< No window caption or edge frame */
 
 
 /* Function prototypes */

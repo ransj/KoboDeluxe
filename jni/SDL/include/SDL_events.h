@@ -145,10 +145,7 @@ typedef enum
     /**
      *  This last event is only for bounding internal arrays
      */
-    SDL_LASTEVENT    = 0xFFFF,
-    //ADD BY RANSJ
-    SDL_VIDEOEXPOSE,		/**< Screen needs to be redrawn */
-    SDL_ACTIVEEVENT			/**< Application loses/gains visibility */
+    SDL_LASTEVENT    = 0xFFFF
 } SDL_EventType;
 
 /**
@@ -495,21 +492,12 @@ typedef struct SDL_SysWMEvent
     SDL_SysWMmsg *msg;  /**< driver dependent data, defined in SDL_syswm.h */
 } SDL_SysWMEvent;
 
-/*ADD BY RANSJ*/
-/** Application visibility event structure */
-typedef struct SDL_ActiveEvent {
-	Uint8 type;	/**< SDL_ACTIVEEVENT */
-	Uint8 gain;	/**< Whether given states were gained or lost (1/0) */
-	Uint8 state;	/**< A mask of the focus states */
-} SDL_ActiveEvent;
-
 /**
  *  \brief General event structure
  */
 typedef union SDL_Event
 {
     Uint32 type;                    /**< Event type, shared with all events */
-    SDL_ActiveEvent active;
     SDL_CommonEvent common;         /**< Common event data */
     SDL_WindowEvent window;         /**< Window event data */
     SDL_KeyboardEvent key;          /**< Keyboard event data */

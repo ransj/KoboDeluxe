@@ -141,10 +141,4 @@
 /* !!! FIXME: what does Android do for filesystem stuff? */
 #define SDL_FILESYSTEM_DUMMY   1
 
-
-/* ADD BY RANSJ*/
-#define SDL_SRCCOLORKEY   0
-#define SDL_SRCALPHA   0
-
-
 #endif /* _SDL_config_android_h */
