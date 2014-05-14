@@ -1648,7 +1648,7 @@ void kobo_gfxengine_t::frame()
 			}
 			k = gamecontrol.map(ev.key.keysym.sym);
 			gamecontrol.press(k);
-			gsm.press(k, ev.key.keysym.unicode);
+			gsm.press(k, ev.key.keysym.unused);
 			break;
 		  case SDL_KEYUP:
 			if((ev.key.keysym.sym == SDLK_ESCAPE) && km.escape_hammering())
