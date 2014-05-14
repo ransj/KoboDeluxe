@@ -145,7 +145,9 @@ typedef enum
     /**
      *  This last event is only for bounding internal arrays
      */
-    SDL_LASTEVENT    = 0xFFFF
+    SDL_LASTEVENT    = 0xFFFF,
+
+    SDL_VIDEOEXPOSE,			/**< Screen needs to be redrawn */
 } SDL_EventType;
 
 /**
