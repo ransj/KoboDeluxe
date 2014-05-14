@@ -336,14 +336,14 @@ void st_game_t::enter()
 		gsm.change(&st_error);
 	}
 	if(prefs->mousecapture)
-		if(SDL_WM_GrabInput(SDL_GRAB_QUERY) != SDL_GRAB_ON)
-			SDL_WM_GrabInput(SDL_GRAB_ON);
+		if(SDL_WM_GrabInput(SDL_GRAB_QUERY) != SDL_TRUE)
+			SDL_WM_GrabInput(SDL_TRUE);
 }
 
 
 void st_game_t::leave()
 {
-	if(SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_GRAB_ON)
+	if(SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_TRUE)
 		SDL_WM_GrabInput(SDL_GRAB_OFF);
 	st_intro_title.inext = &st_intro_instructions;
 	st_intro_title.duration = INTRO_TITLE_TIME + 2000;
@@ -353,7 +353,7 @@ void st_game_t::leave()
 
 void st_game_t::yield()
 {
-	if(SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_GRAB_ON)
+	if(SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_TRUE)
 		SDL_WM_GrabInput(SDL_GRAB_OFF);
 }
 
@@ -361,8 +361,8 @@ void st_game_t::yield()
 void st_game_t::reenter()
 {
 	if(prefs->mousecapture)
-		if(SDL_WM_GrabInput(SDL_GRAB_QUERY) != SDL_GRAB_ON)
-			SDL_WM_GrabInput(SDL_GRAB_ON);
+		if(SDL_WM_GrabInput(SDL_GRAB_QUERY) != SDL_TRUE)
+			SDL_WM_GrabInput(SDL_TRUE);
 }
 
 
