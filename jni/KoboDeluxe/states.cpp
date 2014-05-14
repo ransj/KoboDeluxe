@@ -344,7 +344,7 @@ void st_game_t::enter()
 void st_game_t::leave()
 {
 	if(SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_TRUE)
-		SDL_WM_GrabInput(SDL_GRAB_OFF);
+		SDL_WM_GrabInput(SDL_FALSE);
 	st_intro_title.inext = &st_intro_instructions;
 	st_intro_title.duration = INTRO_TITLE_TIME + 2000;
 	st_intro_title.mode = 0;
@@ -354,7 +354,7 @@ void st_game_t::leave()
 void st_game_t::yield()
 {
 	if(SDL_WM_GrabInput(SDL_GRAB_QUERY) == SDL_TRUE)
-		SDL_WM_GrabInput(SDL_GRAB_OFF);
+		SDL_WM_GrabInput(SDL_FALSE);
 }
 
 
