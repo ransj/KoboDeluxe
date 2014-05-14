@@ -1280,7 +1280,7 @@ void KOBO_main::close_js()
 	if(!joystick)
 		return;
 
-	if(SDL_JoystickOpened(0))
+	if(SDL_JoystickOpen(0))
 		SDL_JoystickClose(joystick);
 	joystick = NULL;
 
