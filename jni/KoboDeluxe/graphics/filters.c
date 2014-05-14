@@ -27,6 +27,7 @@
 #include "sprite.h"
 #include "filters.h"
 
+#define SDL_SRCALPHA	0x00010000	/**< Blit uses source alpha blending */
 
 /*--------------------------------------------------
 	RNG
