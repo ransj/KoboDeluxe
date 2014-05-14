@@ -1626,7 +1626,7 @@ void kobo_gfxengine_t::frame()
 				break;
 			  case SDLK_RETURN:
 				ms = SDL_GetModState();
-				if(ms & (KMOD_CTRL | KMOD_SHIFT | KMOD_META))
+				if(ms & (KMOD_CTRL | KMOD_SHIFT ))
 					break;
 				if(!(ms & KMOD_ALT))
 					break;
