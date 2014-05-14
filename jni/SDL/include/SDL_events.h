@@ -148,6 +148,8 @@ typedef enum
     SDL_LASTEVENT    = 0xFFFF,
 
     SDL_VIDEOEXPOSE,			/**< Screen needs to be redrawn */
+
+    SDL_ACTIVEEVENT			/**< Application loses/gains visibility */
 } SDL_EventType;
 
 /**
