@@ -1637,7 +1637,7 @@ void kobo_gfxengine_t::frame()
 						OS_RESTART_VIDEO;
 				stop();
 				return;
-			  case SDLK_PRINT:
+			  case SDLK_PRINTSCREEN:
 			  case SDLK_SYSREQ:
 // FIXME: Doesn't this trigger when entering names and stuff...?
 			  case SDLK_s:
