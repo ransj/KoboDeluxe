@@ -880,12 +880,12 @@ void new_player_t::open()
 	currentIndex = 0;
 	editing = 1;
 	build_all();
-	SDL_EnableUNICODE(1);
+//	SDL_EnableUNICODE(1);
 }
 
 void new_player_t::close()
 {
-	SDL_EnableUNICODE(0);
+//	SDL_EnableUNICODE(0);
 	clean();
 }
 
