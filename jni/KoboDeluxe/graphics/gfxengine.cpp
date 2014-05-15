@@ -823,11 +823,11 @@ int gfxengine_t::show()
 	flags |= xflags;
 //	SDL_WM_SetCaption(_title, _icontitle);
 //	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
-	screen_surface = SDL_CreateWindow(_title,
-            SDL_WINDOWPOS_UNDEFINED,
-            SDL_WINDOWPOS_UNDEFINED,
-            _width,  _height,
-            SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL);
+	screen_surface = SDL_CreateRGBSurface(0, _width, _height, _depth,
+            0x00FF000,
+            0x0000FF00,
+            0x000000FF,
+            0xFF000000);
 	if(!screen_surface)
 	{
 		log_printf(ELOG, "Failed to open display!\n");
