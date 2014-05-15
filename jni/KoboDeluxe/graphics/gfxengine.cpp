@@ -34,6 +34,7 @@
 #include "window.h"
 
 #define SDL_DOUBLEBUF	0x40000000	/**< Set up double-buffered video mode */
+#define SDL_FULLSCREEN	0x80000000	/**< Surface is a full screen display */
 
 gfxengine_t *gfxengine;
 
