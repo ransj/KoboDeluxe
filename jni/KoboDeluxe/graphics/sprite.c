@@ -35,6 +35,7 @@ TODO: tables as needed when loading banks.
 #include "filters.h"
 
 #define SDL_SRCCOLORKEY	SDL_TRUE
+#define SDL_SRCALPHA	0x00010000	/**< Blit uses source alpha blending */
 
 s_blitmodes_t s_blitmode = S_BLITMODE_AUTO;
 pix_t s_colorkey = {0, 0, 0, 0};

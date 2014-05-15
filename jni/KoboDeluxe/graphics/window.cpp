@@ -25,6 +25,7 @@
 #include "sofont.h"
 
 #define SDL_SRCCOLORKEY	SDL_TRUE
+#define SDL_SRCALPHA	0x00010000	/**< Blit uses source alpha blending */
 
 #define	SELECT	if(selected != this) _select();
 
