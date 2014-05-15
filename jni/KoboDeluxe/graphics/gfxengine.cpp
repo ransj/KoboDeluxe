@@ -764,8 +764,8 @@ int gfxengine_t::show()
 	if(is_showing)
 		return 0;
 
-	if(_centered && !_fullscreen)
-		SDL_putenv((char *)"SDL_VIDEO_CENTERED=1");
+//	if(_centered && !_fullscreen)
+//		SDL_putenv((char *)"SDL_VIDEO_CENTERED=1");
 
 	log_printf(DLOG, "Opening screen...\n");
 	if(!SDL_WasInit(SDL_INIT_VIDEO))
