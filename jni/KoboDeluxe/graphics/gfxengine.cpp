@@ -745,8 +745,8 @@ void gfxengine_t::title(const char *win, const char *icon)
 {
 	_title = win;
 	_icontitle = icon;
-	if(screen_surface)
-		SDL_WM_SetCaption(_title, _icontitle);
+//	if(screen_surface)
+//		SDL_WM_SetCaption(_title, _icontitle);
 }
 
 
@@ -818,8 +818,13 @@ int gfxengine_t::show()
 
 	glSDL_VSync(_vsync);
 	flags |= xflags;
-
-	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
+//	SDL_WM_SetCaption(_title, _icontitle);
+//	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
+	screen_surface = SDL_CreateWindow(_title,
+            SDL_WINDOWPOS_UNDEFINED,
+            SDL_WINDOWPOS_UNDEFINED,
+            _width,  _height,
+            SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL);
 	if(!screen_surface)
 	{
 		log_printf(ELOG, "Failed to open display!\n");
@@ -879,7 +884,7 @@ int gfxengine_t::show()
 		}
 	}
 
-	SDL_WM_SetCaption(_title, _icontitle);
+//	SDL_WM_SetCaption(_title, _icontitle);
 	SDL_ShowCursor(_cursor);
 	cs_engine_set_size(csengine, _width, _height);
 	csengine->filter = use_interpolation;

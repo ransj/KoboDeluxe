@@ -391,7 +391,7 @@ static int extract_sprite(s_bank_t *bank, unsigned frame,
 	/* Copy alpha and colorkey */
 	if(src->flags & SDL_SRCALPHA)
 		SDL_SetAlpha(tmp, src->flags & (SDL_SRCALPHA | SDL_RLEACCEL),
-				src->format->unused);
+				SDL_TRUE);
 	if(src->flags & SDL_SRCCOLORKEY)
 		SDL_SetColorKey(tmp, src->flags & (SDL_SRCCOLORKEY | SDL_RLEACCEL),
 				SDL_TRUE);
