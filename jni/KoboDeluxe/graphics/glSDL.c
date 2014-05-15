@@ -52,6 +52,7 @@
 #define APIENTRY
 #endif
 
+#define SDL_SRCCOLORKEY	SDL_TRUE
 
 static inline void clip_rect(SDL_Rect *r, SDL_Rect *to)
 {

@@ -24,6 +24,8 @@
 #include "gfxengine.h"
 #include "sofont.h"
 
+#define SDL_SRCCOLORKEY	SDL_TRUE
+
 #define	SELECT	if(selected != this) _select();
 
 window_t *window_t::selected = NULL;
