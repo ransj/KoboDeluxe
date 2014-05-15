@@ -33,6 +33,8 @@
 #include "sofont.h"
 #include "window.h"
 
+#define SDL_DOUBLEBUF	0x40000000	/**< Set up double-buffered video mode */
+
 gfxengine_t *gfxengine;
 
 
