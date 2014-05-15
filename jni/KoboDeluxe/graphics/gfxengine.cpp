@@ -824,8 +824,8 @@ int gfxengine_t::show()
 //	SDL_WM_SetCaption(_title, _icontitle);
 //	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
 	SDL_Window *screen = SDL_CreateWindow(_title,
-	                          SDL_WINDOWPOS_UNDEFINED,
-	                          SDL_WINDOWPOS_UNDEFINED,
+			                  SDL_WINDOWPOS_CENTERED,
+	                          SDL_WINDOWPOS_CENTERED,
 	                          _width, _height,
 	                          SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL);
 	screen_surface = SDL_GetWindowSurface(screen);

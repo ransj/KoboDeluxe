@@ -476,6 +476,7 @@ int log_printf(int level, const char *format, ...)
 
 	va_start(args, format);
 	result = vsnprintf(l_buffer, LOG_BUFFER-1, format, args);
+	SDL_LogMessageV(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, format, args);
 	va_end(args);
 	if(result >= 0)
 		result = log_write(l_levels[level].target, l_buffer);
