@@ -491,10 +491,11 @@ int s_filter_displayformat(s_bank_t * b, unsigned first, unsigned frames,
 		{
 		  case S_BLITMODE_AUTO:
 			if(s->surface->format->Amask)
-				SDL_SetAlpha(s->surface,
-						SDL_SRCALPHA |
-						SDL_RLEACCEL,
-						SDL_ALPHA_OPAQUE);
+//				SDL_SetAlpha(s->surface,
+//						SDL_SRCALPHA |
+//						SDL_RLEACCEL,
+//						SDL_ALPHA_OPAQUE);
+			SDL_SetSurfaceAlphaMod(s->surface, SDL_ALPHA_OPAQUE);
 			else
 				SDL_SetColorKey(s->surface, SDL_RLEACCEL, 0);
 			break;
@@ -510,9 +511,10 @@ int s_filter_displayformat(s_bank_t * b, unsigned first, unsigned frames,
 						s_colorkey.b));
 			break;
 		  case S_BLITMODE_ALPHA:
-			SDL_SetAlpha(s->surface,
-					SDL_SRCALPHA | SDL_RLEACCEL,
-					s_alpha);
+//			SDL_SetAlpha(s->surface,
+//					SDL_SRCALPHA | SDL_RLEACCEL,
+//					s_alpha);
+			SDL_SetSurfaceAlphaMod(s->surface, s_alpha);
 			break;
 		}
 
@@ -520,7 +522,8 @@ int s_filter_displayformat(s_bank_t * b, unsigned first, unsigned frames,
 		{
 			if(s->surface->format->Amask)
 				tweak_ck(s->surface);
-			tmp = SDL_DisplayFormat(s->surface);
+//			tmp = SDL_DisplayFormat(s->surface);
+			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
 			if(s->surface->format->Amask)
 				SDL_SetColorKey(tmp,
 						SDL_SRCCOLORKEY | SDL_RLEACCEL,
@@ -529,9 +532,11 @@ int s_filter_displayformat(s_bank_t * b, unsigned first, unsigned frames,
 		else
 		{
 			if(s->surface->format->Amask)
-				tmp = SDL_DisplayFormatAlpha(s->surface);
+//				tmp = SDL_DisplayFormatAlpha(s->surface);
+			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
 			else
-				tmp = SDL_DisplayFormat(s->surface);
+			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
+//				tmp = SDL_DisplayFormat(s->surface);
 		}
 		if(!tmp)
 			return -1;

@@ -385,13 +385,15 @@ static int extract_sprite(s_bank_t *bank, unsigned frame,
 
 	/* Copy palette, if any */
 	if(src->format->palette)
-		SDL_SetColors(tmp, src->format->palette->colors, 0,
-				src->format->palette->ncolors);
+		SDL_SetSurfacePalette(tmp, src->format->palette);
+//		SDL_SetColors(tmp, src->format->palette->colors, 0,
+//				src->format->palette->ncolors);
 
 	/* Copy alpha and colorkey */
 	if(src->flags & SDL_SRCALPHA)
-		SDL_SetAlpha(tmp, src->flags & (SDL_SRCALPHA | SDL_RLEACCEL),
-				SDL_TRUE);
+//		SDL_SetAlpha(tmp, src->flags & (SDL_SRCALPHA | SDL_RLEACCEL),
+//				SDL_TRUE);
+		SDL_SetSurfaceAlphaMod(tmp, SDL_TRUE);
 	if(src->flags & SDL_SRCCOLORKEY)
 		SDL_SetColorKey(tmp, src->flags & (SDL_SRCCOLORKEY | SDL_RLEACCEL),
 				SDL_TRUE);
