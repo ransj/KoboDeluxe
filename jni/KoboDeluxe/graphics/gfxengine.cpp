@@ -1360,11 +1360,13 @@ void gfxengine_t::flip()
 			backpage = (backpage + 1) % _pages;
 			frontpage = (frontpage + 1) % _pages;
 		}
+//		SDL_Flip(screen_surface);
 		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
 	}
 	else
 	{
-		SDL_UpdateRects(screen_surface, dirtyrects[0], dirtytable[0]);
+//		SDL_UpdateRects(screen_surface, dirtyrects[0], dirtytable[0]);
+		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
 		dirtyrects[0] = 0;
 	}
 }
