@@ -211,6 +211,7 @@ class gfxengine_t
 	int			_clamping;
 	SDL_Surface	*screen_surface;
 	SDL_Surface	*softbuf;
+	SDL_Renderer *renderer;
 	int		backpage;
 	int		frontpage;
 	int		dirtyrects[MAX_PAGES];

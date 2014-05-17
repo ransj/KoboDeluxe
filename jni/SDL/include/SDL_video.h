@@ -39,7 +39,7 @@
 extern "C" {
 #endif
 
-#define SDL_HWSURFACE	0x00000001	/**< Surface is in video memory */
+#define SDL_HWSURFACE	SDL_SWSURFACE	/**< Surface is in video memory */
 
 /**
  *  \brief  The structure that defines a display mode

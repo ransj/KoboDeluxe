@@ -147,7 +147,7 @@ int window_t::offscreen()
 	if(!s)
 		return -1;
 //	surface = SDL_DisplayFormat(s);
-	surface = SDL_ConvertSurfaceFormat(s, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
+	surface = SDL_ConvertSurfaceFormat(s, SDL_PIXELFORMAT_RGBA8888 ,SDL_SWSURFACE);
 	SDL_FreeSurface(s);
 	if(!surface)
 		return -1;

@@ -523,7 +523,7 @@ int s_filter_displayformat(s_bank_t * b, unsigned first, unsigned frames,
 			if(s->surface->format->Amask)
 				tweak_ck(s->surface);
 //			tmp = SDL_DisplayFormat(s->surface);
-			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
+			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_RGBA8888 ,SDL_SWSURFACE);
 			if(s->surface->format->Amask)
 				SDL_SetColorKey(tmp,
 						SDL_SRCCOLORKEY | SDL_RLEACCEL,
@@ -533,9 +533,9 @@ int s_filter_displayformat(s_bank_t * b, unsigned first, unsigned frames,
 		{
 			if(s->surface->format->Amask)
 //				tmp = SDL_DisplayFormatAlpha(s->surface);
-			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
+			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_RGBA8888 ,SDL_SWSURFACE);
 			else
-			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_ARGB8888 ,SDL_SWSURFACE);
+			tmp = SDL_ConvertSurfaceFormat(s->surface, SDL_PIXELFORMAT_RGBA8888 ,SDL_SWSURFACE);
 //				tmp = SDL_DisplayFormat(s->surface);
 		}
 		if(!tmp)
