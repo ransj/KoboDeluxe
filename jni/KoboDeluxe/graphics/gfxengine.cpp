@@ -825,7 +825,7 @@ int gfxengine_t::show()
 //	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
 //    if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
 //        exit(2);
-	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, SDL_WINDOW_SHOWN);
 	screen_surface = SDL_GetWindowSurface(myscreen);
 	if(!screen_surface)
 	{
