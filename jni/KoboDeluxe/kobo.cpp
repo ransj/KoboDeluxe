@@ -1598,6 +1598,7 @@ void kobo_gfxengine_t::frame()
 		switch (ev.type)
 		{
 		  case SDL_KEYDOWN:
+			log_printf(VLOG, "SDL_KEYDOWN...");
 			switch(ev.key.keysym.sym)
 			{
 #ifdef PROFILE_AUDIO
@@ -1647,10 +1648,12 @@ void kobo_gfxengine_t::frame()
 				break;
 			}
 			k = gamecontrol.map(ev.key.keysym.sym);
+			log_printf(VLOG, "Key Down : %i ", k);
 			gamecontrol.press(k);
 			gsm.press(k, ev.key.keysym.unused);
 			break;
 		  case SDL_KEYUP:
+			log_printf(VLOG, "SDL_KEYUP...");
 			if((ev.key.keysym.sym == SDLK_ESCAPE) && km.escape_hammering())
 			{
 				km.pause_game();
@@ -1675,6 +1678,7 @@ void kobo_gfxengine_t::frame()
 				return;
 			}
 			k = gamecontrol.map(ev.key.keysym.sym);
+			log_printf(VLOG, "Key Up : %i ", k);
 			if(k == SDLK_PAUSE)
 			{
 				gamecontrol.press(BTN_PAUSE);
@@ -1699,6 +1703,7 @@ void kobo_gfxengine_t::frame()
 			km.brutal_quit();
 			break;
 		  case SDL_JOYBUTTONDOWN:
+			log_printf(VLOG, "SDL_JOYBUTTONDOWN...");
 			if(ev.jbutton.button == km.js_fire)
 			{
 				gamecontrol.press(BTN_FIRE);
@@ -1765,6 +1770,7 @@ void kobo_gfxengine_t::frame()
 		  case SDL_MOUSEMOTION:
 			mouse_x = (int)(ev.motion.x / gengine->xscale()) - km.xoffs;
 			mouse_y = (int)(ev.motion.y / gengine->yscale()) - km.yoffs;
+			log_printf(VLOG, "SDL_MOUSEMOTION...%d, %d", mouse_x, mouse_y);
 			if(prefs->use_mouse)
 				gamecontrol.mouse_position(
 						mouse_x - 8 - MARGIN - WSIZE/2,
@@ -1773,6 +1779,7 @@ void kobo_gfxengine_t::frame()
 		  case SDL_MOUSEBUTTONDOWN:
 			mouse_x = (int)(ev.motion.x / gengine->xscale()) - km.xoffs;
 			mouse_y = (int)(ev.motion.y / gengine->yscale()) - km.yoffs;
+			  log_printf(VLOG, "SDL_MOUSEBUTTONDOWN... %d, %d", mouse_x, mouse_y);
 			gsm.press(BTN_FIRE);
 			if(prefs->use_mouse)
 			{
@@ -1797,6 +1804,7 @@ void kobo_gfxengine_t::frame()
 		  case SDL_MOUSEBUTTONUP:
 			mouse_x = (int)(ev.motion.x / gengine->xscale()) - km.xoffs;
 			mouse_y = (int)(ev.motion.y / gengine->yscale()) - km.yoffs;
+			  log_printf(VLOG, "SDL_MOUSEBUTTONUP... %d, %d", mouse_x, mouse_y);
 			if(prefs->use_mouse)
 			{
 				gamecontrol.mouse_position(

@@ -89,6 +89,7 @@ st_introbase_t::st_introbase_t()
 
 void st_introbase_t::enter()
 {
+	log_printf(ULOG, "enter introbase...");
 	if(!run_intro)
 	{
 		manage.init_resources_title();
@@ -116,6 +117,7 @@ void st_introbase_t::reenter()
 
 void st_introbase_t::press(int button)
 {
+	log_printf(ULOG, "introbase press %i...", button);
 	switch (button)
 	{
 	  case BTN_EXIT:
@@ -186,6 +188,7 @@ st_intro_title_t::st_intro_title_t()
 
 void st_intro_title_t::enter()
 {
+	log_printf(ULOG, "enter intro_title...");
 	st_introbase_t::enter();
 	if(!duration)
 		duration = INTRO_TITLE_TIME + 2000 - INTRO_BLANK_TIME;
@@ -222,6 +225,7 @@ st_intro_instructions_t::st_intro_instructions_t()
 
 void st_intro_instructions_t::enter()
 {
+	log_printf(ULOG, "enter intro_instructions...");
 	st_introbase_t::enter();
 	duration = INTRO_INSTRUCTIONS_TIME;
 	inext = &st_intro_title;
@@ -255,6 +259,7 @@ st_intro_highscores_t::st_intro_highscores_t()
 
 void st_intro_highscores_t::enter()
 {
+	log_printf(ULOG, "enter intro_highscores...");
 	scorefile.gather_high_scores(1);
 	screen.init_highscores();
 	st_introbase_t::enter();
@@ -294,6 +299,7 @@ st_intro_credits_t::st_intro_credits_t()
 
 void st_intro_credits_t::enter()
 {
+	log_printf(ULOG, "enter intro_credits...");
 	st_introbase_t::enter();
 	duration = INTRO_CREDITS_TIME;
 	inext = &st_intro_title;
@@ -328,6 +334,7 @@ st_game_t::st_game_t()
 
 void st_game_t::enter()
 {
+	log_printf(ULOG, "enter game...");
 	audio_channel_stop(0, -1);	//Stop any music
 	run_intro = 0;
 	manage.game_start();
@@ -370,6 +377,7 @@ void st_game_t::reenter()
 
 void st_game_t::press(int button)
 {
+	log_printf(ULOG, "game press %i...", button);
 	switch (button)
 	{
 	  case BTN_EXIT:
@@ -426,12 +434,14 @@ st_pause_game_t::st_pause_game_t()
 
 void st_pause_game_t::enter()
 {
+	log_printf(ULOG, "enter pause game...");
 	sound.ui_pause();
 }
 
 
 void st_pause_game_t::press(int button)
 {
+	log_printf(ULOG, "pause game %i...", button);
 	switch (button)
 	{
 	  case BTN_EXIT:
@@ -479,6 +489,7 @@ st_get_ready_t::st_get_ready_t()
 
 void st_get_ready_t::enter()
 {
+	log_printf(ULOG, "enter get_ready...");
 	manage.update();
 	sound.ui_ready();
 	start_time = (int)SDL_GetTicks();
@@ -489,6 +500,7 @@ void st_get_ready_t::enter()
 
 void st_get_ready_t::press(int button)
 {
+	log_printf(ULOG, "get ready %i...", button);
 	if(frame_time < 500)
 		return;
 
@@ -614,6 +626,7 @@ st_game_over_t::st_game_over_t()
 
 void st_game_over_t::enter()
 {
+	log_printf(ULOG, "enter game over...");
 	sound.ui_gameover();
 	manage.update();
 	start_time = (int)SDL_GetTicks();
@@ -622,6 +635,7 @@ void st_game_over_t::enter()
 
 void st_game_over_t::press(int button)
 {
+	log_printf(ULOG, "game over press %i...", button);
 	if(frame_time < 500)
 		return;
 
@@ -935,6 +949,7 @@ void st_new_player_t::frame()
 
 void st_new_player_t::enter()
 {
+	log_printf(ULOG, "enter new player...");
 	menu.open();
 	run_intro = 0;
 	sound.ui_ok();
@@ -953,6 +968,7 @@ void st_new_player_t::post_render()
 
 void st_new_player_t::press(int button)
 {
+	log_printf(ULOG, "new player press %i...", button);
 	if(menu.editing)
 	{
 		switch(button)
@@ -965,8 +981,8 @@ void st_new_player_t::press(int button)
 			break;
 
 		  case BTN_FIRE:
-			if(!prefs->use_joystick)
-				break;
+//			if(!prefs->use_joystick)
+//				break;
 		  case BTN_START:
 		  case BTN_SELECT:
 			sound.ui_ok();
@@ -1154,6 +1170,7 @@ st_error_t::st_error_t()
 
 void st_error_t::enter()
 {
+	log_printf(ULOG, "enter error...");
 	sound.ui_error();
 	manage.update();
 	start_time = (int)SDL_GetTicks();
@@ -1162,6 +1179,7 @@ void st_error_t::enter()
 
 void st_error_t::press(int button)
 {
+	log_printf(ULOG, "error press %i...", button);
 	if(frame_time < 500)
 		return;
 
