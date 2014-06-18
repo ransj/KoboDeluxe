@@ -20,7 +20,7 @@ SDL_PATH := ../SDL
 KOBODELUXE_PATH := ../KoboDeluxe
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(KOBODELUXE_PATH)
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(KOBODELUXE_PATH)
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c
