@@ -209,9 +209,10 @@ class gfxengine_t
 	gfx_drivers_t		_driver;
 	gfx_scalemodes_t	_scalemode;
 	int			_clamping;
+	SDL_Window *myscreen;
+	SDL_Renderer *renderer;
 	SDL_Surface	*screen_surface;
 	SDL_Surface	*softbuf;
-	SDL_Renderer *renderer;
 	int		backpage;
 	int		frontpage;
 	int		dirtyrects[MAX_PAGES];

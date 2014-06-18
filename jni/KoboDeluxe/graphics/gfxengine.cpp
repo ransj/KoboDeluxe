@@ -823,12 +823,10 @@ int gfxengine_t::show()
 	flags |= xflags;
 //	SDL_WM_SetCaption(_title, _icontitle);
 //	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
-	SDL_Window *screen = SDL_CreateWindow(_title,
-			                  SDL_WINDOWPOS_CENTERED,
-	                          SDL_WINDOWPOS_CENTERED,
-	                          _width, _height,
-	                          SDL_WINDOW_FULLSCREEN | SDL_WINDOW_OPENGL);
-	screen_surface = SDL_GetWindowSurface(screen);
+//    if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
+//        exit(2);
+	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+	screen_surface = SDL_GetWindowSurface(myscreen);
 	if(!screen_surface)
 	{
 		log_printf(ELOG, "Failed to open display!\n");
@@ -1361,13 +1359,15 @@ void gfxengine_t::flip()
 			backpage = (backpage + 1) % _pages;
 			frontpage = (frontpage + 1) % _pages;
 		}
+		SDL_UpdateWindowSurface(myscreen);
 //		SDL_Flip(screen_surface);
-		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
+//		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
 	}
 	else
 	{
+		SDL_UpdateWindowSurface(myscreen);
 //		SDL_UpdateRects(screen_surface, dirtyrects[0], dirtytable[0]);
-		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
+//		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
 		dirtyrects[0] = 0;
 	}
 }
