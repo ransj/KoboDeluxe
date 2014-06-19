@@ -47,7 +47,7 @@ void prefs_t::init()
 	key("mousemode", mousemode, MMD_CROSSHAIR); desc("Mouse Control Mode");
 	yesno("broken_numdia", broken_numdia, 0); desc("Broken NumPad Diagonals");
 	key("dia_emphasis", dia_emphasis, 0); desc("Diagonals Emphasis Filter");
-	yesno("always_fire", always_fire, 0); desc("Always Fire");
+	yesno("always_fire", always_fire, 1); desc("Always Fire");
 	yesno("mousecapture", mousecapture, 1); desc("In-game Mouse Capture");
 
 	comment("--- Game options ---------------------------");

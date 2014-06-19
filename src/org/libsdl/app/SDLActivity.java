@@ -9,11 +9,13 @@ import java.util.List;
 import android.app.*;
 import android.content.*;
 import android.view.*;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsoluteLayout;
+import android.widget.RelativeLayout;
 import android.os.*;
 import android.util.Log;
 import android.graphics.*;
@@ -91,10 +93,37 @@ public class SDLActivity extends Activity {
             mJoystickHandler = new SDLJoystickHandler();
         }
 
-        mLayout = new AbsoluteLayout(this);
+        mLayout = new RelativeLayout(this);
         mLayout.addView(mSurface);
-
+        getLayoutInflater().inflate(R.layout.joystick, mLayout);
         setContentView(mLayout);
+        OnClickListener listener = new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				int keyCode = 0;
+				switch(arg0.getId()){
+				case R.id.js_up:
+					keyCode = KeyEvent.KEYCODE_DPAD_UP;
+					break;
+				case R.id.js_down:
+					keyCode = KeyEvent.KEYCODE_DPAD_DOWN;
+					break;
+				case R.id.js_left:
+					keyCode = KeyEvent.KEYCODE_DPAD_LEFT;
+					break;
+				case R.id.js_right:
+					keyCode = KeyEvent.KEYCODE_DPAD_RIGHT;
+					break;
+				}
+				SDLActivity.onNativeKeyDown(keyCode);
+				SDLActivity.onNativeKeyUp(keyCode);
+			}
+		};
+        findViewById(R.id.js_up).setOnClickListener(listener);
+        findViewById(R.id.js_down).setOnClickListener(listener);
+        findViewById(R.id.js_left).setOnClickListener(listener);
+        findViewById(R.id.js_right).setOnClickListener(listener);
     }
 
     // Events

@@ -24,6 +24,7 @@
 #include "kobo.h"
 #include "gamectl.h"
 #include "myship.h"
+#include "logger.h"
 
 
 int gamecontrol_t::afire;
@@ -186,6 +187,7 @@ FIXME: This should be replaced by a configurable mapping system.
 
 void gamecontrol_t::press(int k)
 {
+	log_printf(ULOG, "game control press: %i", k);
 	switch(k)
 	{
 	  case BTN_LEFT:
@@ -221,6 +223,7 @@ void gamecontrol_t::press(int k)
 
 void gamecontrol_t::release(int k)
 {
+	log_printf(ULOG, "game control release: %i", k);
 	switch(k)
 	{
 	  case BTN_LEFT:
@@ -275,6 +278,7 @@ void gamecontrol_t::mouse_release(int n)
 
 void gamecontrol_t::mouse_position(int h, int v)
 {
+	log_printf(ULOG, "game control : %i, %i, %i", h, v, prefs->mousemode);
 	switch(prefs->mousemode)
 	{
 	  case MMD_OFF:
@@ -332,6 +336,7 @@ void gamecontrol_t::mouse_position(int h, int v)
 		else
 			direction = 7;
 	}
+	log_printf(ULOG, "direction : % i", direction);
 }
 
 
