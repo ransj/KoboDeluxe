@@ -84,8 +84,8 @@ void prefs_t::init()
 	yesno("fullscreen", fullscreen, 0); desc("Fullscreen Display");
 	key("videodriver", videodriver, GFX_DRIVER_SDL2D);
 			desc("Display Driver");
-	key("width", width, 640); desc("Horizontal Resolution");
-	key("height", height, 480); desc("Vertical Resolution");
+	key("width", width, 1280); desc("Horizontal Resolution");
+	key("height", height, 960); desc("Vertical Resolution");
 	key("aspect", aspect, 1000); desc("Pixel Aspect Ratio");
 	key("depth", depth, 0); desc("Display Depth");
 	key("maxfps", max_fps, 100); desc("Maximum fps");

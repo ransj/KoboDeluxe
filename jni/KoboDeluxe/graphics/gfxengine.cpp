@@ -34,7 +34,6 @@
 #include "window.h"
 
 #define SDL_DOUBLEBUF	0x40000000	/**< Set up double-buffered video mode */
-#define SDL_FULLSCREEN	0x80000000	/**< Surface is a full screen display */
 
 gfxengine_t *gfxengine;
 
@@ -759,6 +758,7 @@ void gfxengine_t::title(const char *win, const char *icon)
 
 int gfxengine_t::show()
 {
+	log_printf(DLOG, "Opening screen...\n");
 	int flags = 0;
 
 	if(!is_open)
@@ -770,7 +770,6 @@ int gfxengine_t::show()
 //	if(_centered && !_fullscreen)
 //		SDL_putenv((char *)"SDL_VIDEO_CENTERED=1");
 
-	log_printf(DLOG, "Opening screen...\n");
 	if(!SDL_WasInit(SDL_INIT_VIDEO))
 		if(SDL_InitSubSystem(SDL_INIT_VIDEO) == -1)
 		{
@@ -816,8 +815,9 @@ int gfxengine_t::show()
 		  	flags |= SDL_HWSURFACE;
 	}
 
-	if(_fullscreen)
-		flags |= SDL_FULLSCREEN;
+	if(_fullscreen){
+		flags |= SDL_WINDOW_FULLSCREEN;
+	}
 
 	glSDL_VSync(_vsync);
 	flags |= xflags;
@@ -825,11 +825,11 @@ int gfxengine_t::show()
 //	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
 //    if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
 //        exit(2);
-	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, SDL_WINDOW_SHOWN);
+	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, flags);
 	screen_surface = SDL_GetWindowSurface(myscreen);
 	if(!screen_surface)
 	{
-		log_printf(ELOG, "Failed to open display!\n");
+		log_printf(ELOG, "Failed to open display! %i, %i, %i\n", _width, _height, flags);
 		return -3;
 	}
 

@@ -7,7 +7,7 @@
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
         android:background="#5500ff00" >
         <TextView 
             android:id="@+id/js_up"
