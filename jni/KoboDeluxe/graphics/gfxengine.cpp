@@ -823,10 +823,19 @@ int gfxengine_t::show()
 	flags |= xflags;
 //	SDL_WM_SetCaption(_title, _icontitle);
 //	screen_surface = SDL_SetVideoMode(_width, _height, _depth, flags);
-//    if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
-//        exit(2);
-	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, flags);
-	screen_surface = SDL_GetWindowSurface(myscreen);
+    if(SDL_CreateWindowAndRenderer(0, 0, 0, &myscreen, &renderer) < 0)
+        exit(2);
+    sdlTexture = SDL_CreateTexture(renderer,
+                                                SDL_PIXELFORMAT_ARGB8888,
+                                                SDL_TEXTUREACCESS_STREAMING,
+                                                _width, _height);
+    screen_surface = SDL_CreateRGBSurface(0, _width, _height, 32,
+            0x00FF0000,
+            0x0000FF00,
+            0x000000FF,
+            0xFF000000);
+//	myscreen = SDL_CreateWindow("SDL2 Example", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _width, _height, flags);
+//	screen_surface = SDL_GetWindowSurface(myscreen);
 	if(!screen_surface)
 	{
 		log_printf(ELOG, "Failed to open display! %i, %i, %i\n", _width, _height, flags);
@@ -1359,13 +1368,21 @@ void gfxengine_t::flip()
 			backpage = (backpage + 1) % _pages;
 			frontpage = (frontpage + 1) % _pages;
 		}
-		SDL_UpdateWindowSurface(myscreen);
+		SDL_UpdateTexture(sdlTexture, NULL, screen_surface->pixels, screen_surface->pitch);
+		SDL_RenderClear(renderer);
+		SDL_RenderCopy(renderer, sdlTexture, NULL, NULL);
+		SDL_RenderPresent(renderer);
+//		SDL_UpdateWindowSurface(myscreen);
 //		SDL_Flip(screen_surface);
 //		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
 	}
 	else
 	{
-		SDL_UpdateWindowSurface(myscreen);
+		SDL_UpdateTexture(sdlTexture, NULL, screen_surface->pixels, screen_surface->pitch);
+		SDL_RenderClear(renderer);
+		SDL_RenderCopy(renderer, sdlTexture, NULL, NULL);
+		SDL_RenderPresent(renderer);
+//		SDL_UpdateWindowSurface(myscreen);
 //		SDL_UpdateRects(screen_surface, dirtyrects[0], dirtytable[0]);
 //		SDL_RenderPresent(SDL_CreateSoftwareRenderer(screen_surface));
 		dirtyrects[0] = 0;

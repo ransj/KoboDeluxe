@@ -212,6 +212,7 @@ class gfxengine_t
 	SDL_Window *myscreen;
 	SDL_Renderer *renderer;
 	SDL_Surface	*screen_surface;
+	SDL_Texture *sdlTexture;
 	SDL_Surface	*softbuf;
 	int		backpage;
 	int		frontpage;
