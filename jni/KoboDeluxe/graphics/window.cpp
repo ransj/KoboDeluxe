@@ -336,7 +336,7 @@ void window_t::center(int _y, const char *txt)
 }
 
 
-void window_t::center_token(int _x, int _y, const char *txt, char token)
+void window_t::center_token(int _x, int _y, const char *txt, int token)
 {
 	center_token_fxp(PIXEL2CS(_x), PIXEL2CS(_y), txt, token);
 }
@@ -379,10 +379,11 @@ void window_t::center_fxp(int _y, const char *txt)
 }
 
 
-void window_t::center_token_fxp(int _x, int _y, const char *txt, char token)
+void window_t::center_token_fxp(int _x, int _y, const char *txt, int token)
 {
 	_x = CS2PIXEL((_x * xs + 128) >> 8);
 	_y = CS2PIXEL((_y * ys + 128) >> 8);
+	log_printf(ULOG, "center_token_fxp %i, %i, %i",_x, _y, token);
 
 	if(!engine)
 		return;
