@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.libsdl.app.JoystickView.OnJoystickMoveListener;
+
 import android.app.*;
 import android.content.*;
 import android.view.*;
@@ -49,7 +51,7 @@ public class SDLActivity extends Activity {
     // Load the .so
     static {
         System.loadLibrary("SDL2");
-        //System.loadLibrary("SDL2_image");
+        System.loadLibrary("SDL2_image");
         //System.loadLibrary("SDL2_mixer");
         //System.loadLibrary("SDL2_net");
         //System.loadLibrary("SDL2_ttf");
@@ -97,33 +99,40 @@ public class SDLActivity extends Activity {
         mLayout.addView(mSurface);
         getLayoutInflater().inflate(R.layout.joystick, mLayout);
         setContentView(mLayout);
-        OnClickListener listener = new OnClickListener() {
+        JoystickView joystick = (JoystickView) findViewById(R.id.joystick_view);
+        joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
 			
 			@Override
-			public void onClick(View arg0) {
-				int keyCode = 0;
-				switch(arg0.getId()){
-				case R.id.js_up:
-					keyCode = KeyEvent.KEYCODE_DPAD_UP;
-					break;
-				case R.id.js_down:
-					keyCode = KeyEvent.KEYCODE_DPAD_DOWN;
-					break;
-				case R.id.js_left:
-					keyCode = KeyEvent.KEYCODE_DPAD_LEFT;
-					break;
-				case R.id.js_right:
-					keyCode = KeyEvent.KEYCODE_DPAD_RIGHT;
-					break;
-				}
-				SDLActivity.onNativeKeyDown(keyCode);
-				SDLActivity.onNativeKeyUp(keyCode);
+			public void onValueChanged(int angle, int power, int direction) {
+				switch (direction) {
+                case JoystickView.FRONT:
+                	onNativeKeyDown(KeyEvent.KEYCODE_DPAD_UP);
+                	onNativeKeyUp(KeyEvent.KEYCODE_DPAD_UP);
+                    break;
+                case JoystickView.FRONT_RIGHT:
+                    break;
+                case JoystickView.RIGHT:
+                	onNativeKeyDown(KeyEvent.KEYCODE_DPAD_LEFT);
+                	onNativeKeyUp(KeyEvent.KEYCODE_DPAD_LEFT);
+                    break;
+                case JoystickView.RIGHT_BOTTOM:
+                    break;
+                case JoystickView.BOTTOM:
+                	onNativeKeyDown(KeyEvent.KEYCODE_DPAD_DOWN);
+                	onNativeKeyUp(KeyEvent.KEYCODE_DPAD_DOWN);
+                    break;
+                case JoystickView.BOTTOM_LEFT:
+                    break;
+                case JoystickView.LEFT:
+                	onNativeKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT);
+                	onNativeKeyUp(KeyEvent.KEYCODE_DPAD_RIGHT);
+                    break;
+                case JoystickView.LEFT_FRONT:
+                    break;
+                default:
+                }
 			}
-		};
-        findViewById(R.id.js_up).setOnClickListener(listener);
-        findViewById(R.id.js_down).setOnClickListener(listener);
-        findViewById(R.id.js_left).setOnClickListener(listener);
-        findViewById(R.id.js_right).setOnClickListener(listener);
+		}, 20);
     }
 
     // Events
@@ -561,7 +570,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
     public SDLSurface(Context context) {
         super(context);
         getHolder().addCallback(this); 
-//        getHolder().setFormat(PixelFormat.RGBA_8888);
+        getHolder().setFormat(PixelFormat.RGBA_8888);
 //        getHolder().setFixedSize(320, 480);
         setFocusable(true);
         setFocusableInTouchMode(true);

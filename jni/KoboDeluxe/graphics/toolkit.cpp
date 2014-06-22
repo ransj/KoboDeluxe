@@ -152,11 +152,9 @@ void ct_widget_t::render_text_aligned(const char *buf)
 		center_token(width() - xoffs(), yy, buf);
 		break;
 	  case ALIGN_CENTER:
-	    log_printf(ULOG, "ALIGN_CENTER %s", buf);
 		center_token(xoffs(), yy, buf, -1);
 		break;
 	  case ALIGN_CENTER_TOKEN:
-		log_printf(ULOG,"ALIGN_CENTER_TOKEN %i, %s", _token, buf);
 		center_token(xoffs(), yy, buf, _token);
 		break;
 	}

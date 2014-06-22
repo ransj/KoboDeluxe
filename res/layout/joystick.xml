@@ -3,46 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <RelativeLayout
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+    <org.libsdl.app.JoystickView
+        android:id="@+id/joystick_view"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="#5500ff00" >
-        <TextView 
-            android:id="@+id/js_up"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="80dp"
-            android:text="上"
-            android:background="#ffffff"
-            android:gravity="center"/>
-        <TextView 
-            android:id="@+id/js_left"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_below="@+id/js_up"
-            android:text="左"
-            android:background="#ffffff"
-            android:gravity="center"/>
-        <TextView 
-            android:id="@+id/js_right"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_below="@+id/js_up"
-            android:layout_alignParentRight="true"
-            android:text="右"
-            android:background="#ffffff"
-            android:gravity="center"/>
-        <TextView 
-            android:id="@+id/js_down"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_alignParentBottom="true"
-            android:text="下"
-            android:background="#ffffff"
-            android:gravity="center"/>
-    </RelativeLayout>
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
