@@ -359,7 +359,7 @@ int filemapper_t::test_file_create(const char *syspath)
 		fclose(f);
 		if(exists)
 		{
-//			log_printf(DLOG, "  File is writable!\n");
+//			log_printf(DLOG, "  File isï¿½writable!\n");
 			return FM_FILE;
 		}
 		else
@@ -389,7 +389,8 @@ int filemapper_t::test_file_dir_any(const char *syspath, int kind)
 	{
 	  case FM_ERROR:
 //		log_printf(DLOG, "  Nope.\n");
-		break;
+//		break;
+		return 1;
 	  case FM_FILE:
 		if((kind == FM_ANY) || (kind == FM_FILE))
 		{
