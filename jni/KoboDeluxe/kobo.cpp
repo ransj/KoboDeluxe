@@ -141,22 +141,23 @@ static void setup_dirs(char *xpath)
 	 * Graphics data
 	 */
 	/* Current dir; from within the build tree */
-	fmap->addpath("GFX", "./data/gfx");
+//	fmap->addpath("GFX", "./data/gfx");
 	/* Real data dir */
-	fmap->addpath("GFX", "DATA>>gfx");
+//	fmap->addpath("GFX", "DATA>>gfx");
 	/* Current dir */
-	fmap->addpath("GFX", "./gfx");
+//	fmap->addpath("GFX", "./gfx");
+	fmap->addpath("GFX", "gfx");
 
 	/*
 	 * Sound data
 	 */
 	/* Current dir; from within the build tree */
-	fmap->addpath("SFX", "./data/sfx");
+//	fmap->addpath("SFX", "./data/sfx");
 	/* Real data dir */
-	fmap->addpath("SFX", "DATA>>sfx");
+//	fmap->addpath("SFX", "DATA>>sfx");
 	/* Current dir */
-	fmap->addpath("SFX", "./sfx");
-
+//	fmap->addpath("SFX", "./sfx");
+	fmap->addpath("SFX", "sfx");
 	/*
 	 * Score files (user and global)
 	 */

@@ -27,6 +27,8 @@
 #include "config.h"
 #include "_e_script.h"
 #include "e_util.h"
+#include "logger.h"
+#include "SDL_rwops.h"
 
 #define	DBG(x)
 
@@ -71,7 +73,29 @@ int eel_load(const char *filename)
 	strcat(eel_scripttab[h].name, "/");
 #endif
 	strcat(eel_scripttab[h].name, filename);
-
+#ifdef ANDROID
+	SDL_RWops *rw = SDL_RWFromFile(eel_scripttab[h].name, "rb");
+	if(rw == NULL)
+		return -1;
+	int size = SDL_RWsize(rw);
+	if(size)
+	{
+		eel_scripttab[h].len = size;
+		eel_scripttab[h].data = (unsigned char *)malloc(
+				eel_scripttab[h].len + 1);
+		if(eel_scripttab[h].data)
+		{
+			if(SDL_RWread(rw, eel_scripttab[h].data, size, 1) == 1)
+			{
+				SDL_RWclose(rw);
+				return h;
+			}
+			eel_free(h);
+		}
+	}
+	SDL_RWclose(rw);
+	return -2;
+#else
 	f = fopen(eel_scripttab[h].name, "rb");
 	if(!f)
 		return -1;
@@ -106,6 +130,7 @@ int eel_load(const char *filename)
 	DBG(printf("eel_load(): Seek-to-end error!\n");)
 	fclose(f);
 	return -2;
+#endif
 }
 
 
