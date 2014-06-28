@@ -83,6 +83,7 @@ void gamecontrol_t::clear()
 
 int gamecontrol_t::map(SDLKey sym)
 {
+	log_printf(ULOG, "game control map: %i", sym);
 /*
 FIXME: This should be replaced by a configurable mapping system.
 */
@@ -179,6 +180,10 @@ FIXME: This should be replaced by a configurable mapping system.
 		return BTN_F11;
 	  case SDLK_F12:
 		return BTN_F12;
+#ifdef __ANDROID__
+	  case SDLK_AC_BACK:
+		return BTN_CLOSE;
+#endif
 	  default:
 		return -1;
 	}

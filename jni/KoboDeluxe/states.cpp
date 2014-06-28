@@ -384,7 +384,11 @@ void st_game_t::press(int button)
 		gsm.push(&st_main_menu);
 		break;
 	  case BTN_CLOSE:
+#ifdef __ANDROID__
+		gsm.push(&st_ask_abort_game);
+#else
 		gsm.push(&st_ask_exit);
+#endif
 		break;
 	  case BTN_SELECT:
 	  case BTN_START:
@@ -1501,6 +1505,11 @@ void st_skill_menu_t::press(int button)
 		menu->set_skill(menu->selected()->tag - 10);
 		menu->rebuild();
 		break;
+#ifdef __ANDROID__
+	  case BTN_CLOSE:
+		  gsm.push(&st_main_menu);
+		break;
+#endif
 	}
 }
 
