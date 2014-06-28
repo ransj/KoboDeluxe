@@ -61,6 +61,9 @@ extern "C" {
 #include "options.h"
 #include "myship.h"
 #include "enemies.h"
+#ifdef __ANDROID__
+#include "SDL_compat.h"
+#endif
 
 #define	MAX_FPS_RESULTS	64
 
@@ -134,30 +137,32 @@ static void main_cleanup()
 static void setup_dirs(char *xpath)
 {
 	fmap->exepath(xpath);
-
+#ifdef __ANDROID__
+	fmap->addpath("GFX", "gfx");
+	fmap->addpath("SFX", "sfx");
+	fmap->addpath("SCORES", SDL_AndroidGetCachePath());
+	fmap->addpath("CONFIG", SDL_AndroidGetCachePath());
+#else
 	fmap->addpath("DATA", KOBO_DATA_DIR);
-
 	/*
 	 * Graphics data
 	 */
 	/* Current dir; from within the build tree */
-//	fmap->addpath("GFX", "./data/gfx");
+	fmap->addpath("GFX", "./data/gfx");
 	/* Real data dir */
-//	fmap->addpath("GFX", "DATA>>gfx");
+	fmap->addpath("GFX", "DATA>>gfx");
 	/* Current dir */
-//	fmap->addpath("GFX", "./gfx");
-	fmap->addpath("GFX", "gfx");
+	fmap->addpath("GFX", "./gfx");
 
 	/*
 	 * Sound data
 	 */
 	/* Current dir; from within the build tree */
-//	fmap->addpath("SFX", "./data/sfx");
+	fmap->addpath("SFX", "./data/sfx");
 	/* Real data dir */
-//	fmap->addpath("SFX", "DATA>>sfx");
+	fmap->addpath("SFX", "DATA>>sfx");
 	/* Current dir */
-//	fmap->addpath("SFX", "./sfx");
-	fmap->addpath("SFX", "sfx");
+	fmap->addpath("SFX", "./sfx");
 	/*
 	 * Score files (user and global)
 	 */
@@ -165,7 +170,7 @@ static void setup_dirs(char *xpath)
 	/* 'scores' in current dir (For importing scores, perhaps...) */
 // (Disabled for now, since filemapper_t can't tell
 // when it hits the same dir more than once...)
-//	fmap->addpath("SCORES", "./scores");
+	fmap->addpath("SCORES", "./scores");
 
 	/*
 	 * Configuration files
@@ -175,6 +180,7 @@ static void setup_dirs(char *xpath)
 	fmap->addpath("CONFIG", SYSCONF_DIR);
 	/* In current dir (last resort) */
 	fmap->addpath("CONFIG", "./");
+#endif
 }
 
 

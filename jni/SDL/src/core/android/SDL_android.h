@@ -48,6 +48,8 @@ extern void* Android_JNI_GetAudioBuffer();
 extern void Android_JNI_WriteAudioBuffer();
 extern void Android_JNI_CloseAudioDevice();
 
+#include "SDL_compat.h"
+
 #include "SDL_rwops.h"
 
 int Android_JNI_FileOpen(SDL_RWops* ctx, const char* fileName, const char* mode);
