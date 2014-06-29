@@ -385,7 +385,7 @@ void st_game_t::press(int button)
 		break;
 	  case BTN_CLOSE:
 #ifdef __ANDROID__
-		gsm.push(&st_ask_abort_game);
+		gsm.push(&st_main_menu);
 #else
 		gsm.push(&st_ask_exit);
 #endif
