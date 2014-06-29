@@ -198,6 +198,7 @@ public class SDLActivity extends Activity {
     @Override
     protected void onDestroy() {
         Log.v("SDL", "onDestroy()");
+        super.onDestroy();
         // Send a quit message to the application
         SDLActivity.mExitCalledFromJava = true;
         SDLActivity.nativeQuit();
@@ -214,7 +215,6 @@ public class SDLActivity extends Activity {
             //Log.v("SDL", "Finished waiting for SDL thread");
         }
             
-        super.onDestroy();
         // Reset everything in case the user re opens the app
         SDLActivity.initialize();
     }
@@ -490,6 +490,9 @@ public class SDLActivity extends Activity {
     
     public static void audioWriteShortBuffer(short[] buffer) {
         for (int i = 0; i < buffer.length; ) {
+        	if(mAudioTrack == null){
+        		break;
+        	}
             int result = mAudioTrack.write(buffer, i, buffer.length - i);
             if (result > 0) {
                 i += result;
@@ -508,6 +511,9 @@ public class SDLActivity extends Activity {
     
     public static void audioWriteByteBuffer(byte[] buffer) {
         for (int i = 0; i < buffer.length; ) {
+        	if(mAudioTrack == null){
+        		break;
+        	}
             int result = mAudioTrack.write(buffer, i, buffer.length - i);
             if (result > 0) {
                 i += result;
@@ -527,6 +533,7 @@ public class SDLActivity extends Activity {
     public static void audioQuit() {
         if (mAudioTrack != null) {
             mAudioTrack.stop();
+            mAudioTrack.release();
             mAudioTrack = null;
         }
     }

@@ -25,7 +25,7 @@
         <activity android:name="SDLActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape"
-                  android:configChanges="keyboardHidden|orientation"
+                  android:configChanges="orientation|layoutDirection|screenLayout|screenSize"
                   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
