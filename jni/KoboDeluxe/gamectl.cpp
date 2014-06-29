@@ -183,6 +183,8 @@ FIXME: This should be replaced by a configurable mapping system.
 #ifdef __ANDROID__
 	  case SDLK_AC_BACK:
 		return BTN_CLOSE;
+	  case SDLK_SELECT:
+		return BTN_FIRE;
 #endif
 	  default:
 		return -1;

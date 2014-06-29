@@ -5,7 +5,7 @@
 
     <org.libsdl.app.GestureView
         android:id="@+id/joystick_view"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true" />

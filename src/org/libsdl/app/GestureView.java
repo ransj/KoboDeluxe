@@ -20,6 +20,7 @@ public class GestureView extends View implements OnGestureListener{
 	public static final int DIRECTION_RIGHT = 1;
 	public static final int DIRECTION_UP = 2;
 	public static final int DIRECTION_DOWN = 3;
+	public static final int DIRECTION_ENTER = 4;
 	
 	private GestureDetector mGDetector;
 	private FloatPoint mDownPoint;
@@ -55,7 +56,6 @@ public class GestureView extends View implements OnGestureListener{
 	public boolean onTouchEvent(MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_UP){
 			mDownPoint.setValue(0, 0);
-			return true;
 		}
 		if(mGDetector.onTouchEvent(event)){
 			return true;
@@ -91,28 +91,28 @@ public class GestureView extends View implements OnGestureListener{
 		if (ax >= DISTANCE && ay >= DISTANCE) {
 			if (ax > ay) {
 				if (arg2 > 0) {
-					onDirectionChanged(DIRECTION_LEFT);
+					onDirectionChanged(DIRECTION_LEFT, null);
 				} else {
-					onDirectionChanged(DIRECTION_RIGHT);
+					onDirectionChanged(DIRECTION_RIGHT, null);
 				}
 			} else {
 				if (arg3 > 0) {
-					onDirectionChanged(DIRECTION_UP);
+					onDirectionChanged(DIRECTION_UP, null);
 				} else {
-					onDirectionChanged(DIRECTION_DOWN);
+					onDirectionChanged(DIRECTION_DOWN, null);
 				}
 			}
 		} else if (ax >= DISTANCE) {
 			if (arg2 > 0) {
-				onDirectionChanged(DIRECTION_LEFT);
+				onDirectionChanged(DIRECTION_LEFT, null);
 			} else {
-				onDirectionChanged(DIRECTION_RIGHT);
+				onDirectionChanged(DIRECTION_RIGHT, null);
 			}
 		} else if (ay >= DISTANCE) {
 			if (arg3 > 0) {
-				onDirectionChanged(DIRECTION_UP);
+				onDirectionChanged(DIRECTION_UP, null);
 			} else {
-				onDirectionChanged(DIRECTION_DOWN);
+				onDirectionChanged(DIRECTION_DOWN, null);
 			}
 		} else {
 			mDownPoint.setValue(arg1.getX(), arg1.getY());
@@ -128,12 +128,13 @@ public class GestureView extends View implements OnGestureListener{
 	@Override
 	public boolean onSingleTapUp(MotionEvent arg0) {
 		Log.d(TAG, "onSingleTapUp ...");
+		onDirectionChanged(DIRECTION_ENTER, arg0);
 		return true;
 	}
 	
-	private void onDirectionChanged(int direction){
+	private void onDirectionChanged(int direction, MotionEvent event){
 		if(mListener != null){
-			mListener.onDirectionChanged(direction);
+			mListener.onDirectionChanged(direction, event);
 		}
 	}
 	
@@ -157,6 +158,6 @@ public class GestureView extends View implements OnGestureListener{
 		 * 方向改变
 		 * @param direction
 		 */
-		public void onDirectionChanged(int direction);
+		public void onDirectionChanged(int direction, MotionEvent event);
 	}
 }

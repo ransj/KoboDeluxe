@@ -104,7 +104,7 @@ public class SDLActivity extends Activity {
         gv.setOnDirectionChangedListener(new onDirectionChangedListener() {
 			
 			@Override
-			public void onDirectionChanged(int direction) {
+			public void onDirectionChanged(int direction, MotionEvent event) {
 				Log.d(TAG, "onDirectionChanged : "+direction);
 				int dir = KeyEvent.KEYCODE_DPAD_LEFT;
 				switch (direction) {
@@ -119,6 +119,9 @@ public class SDLActivity extends Activity {
 					break;
 				case GestureView.DIRECTION_DOWN:
 					dir = KeyEvent.KEYCODE_DPAD_DOWN;
+					break;
+				case GestureView.DIRECTION_ENTER:
+					dir = KeyEvent.KEYCODE_DPAD_CENTER;
 					break;
 				}
 				onNativeKeyDown(dir);
@@ -565,6 +568,34 @@ public class SDLActivity extends Activity {
         if (SDLActivity.mSDLThread != null) {
             mJoystickHandler.pollInputDevices();
         }
+    }
+    
+    /**
+     * 用于显示插屏广告
+     */
+    public static void showAds(){
+    	
+    }
+    
+    /**
+     * 用于显示积分墙广告
+     */
+    public static void showWalls(){
+    	
+    }
+    
+    /**
+     * 进入游戏
+     */
+    public static void enterGame(){
+    	
+    }
+    
+    /**
+     * 退出游戏
+     */
+    public static void exitGame(){
+    	
     }
     
 }
