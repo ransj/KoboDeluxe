@@ -27,6 +27,8 @@ public class GestureView extends View implements OnGestureListener{
 	private onDirectionChangedListener mListener;
 	private boolean mIsInit;
 	
+	private boolean mIsFlingMode = true;
+	
 	public GestureView(Context context) {
 		super(context);
 	}
@@ -51,6 +53,10 @@ public class GestureView extends View implements OnGestureListener{
 			init();
 		}
 	}
+	
+	public void setIsFlingOnlyMode(boolean flingOnly){
+		mIsFlingMode = flingOnly;
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -74,6 +80,21 @@ public class GestureView extends View implements OnGestureListener{
 	public boolean onFling(MotionEvent arg0, MotionEvent arg1, float arg2,
 			float arg3) {
 		Log.d(TAG, "onFling ..."+arg2+","+arg3);
+		float ax = Math.abs(arg2);
+		float ay = Math.abs(arg3);
+		if (ax > ay) {
+			if (arg2 > 0) {
+				onDirectionChanged(DIRECTION_RIGHT, null);
+			} else {
+				onDirectionChanged(DIRECTION_LEFT, null);
+			}
+		} else {
+			if (arg3 > 0) {
+				onDirectionChanged(DIRECTION_DOWN, null);
+			} else {
+				onDirectionChanged(DIRECTION_UP, null);
+			}
+		}
 		return true;
 	}
 
@@ -86,6 +107,9 @@ public class GestureView extends View implements OnGestureListener{
 	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
 			float arg3) {
 		Log.d(TAG, "onScroll ..." + arg2 + "," + arg3);
+		if(mIsFlingMode){
+			return true;
+		}
 		float ax = Math.abs(arg2);
 		float ay = Math.abs(arg3);
 		if (ax >= DISTANCE && ay >= DISTANCE) {

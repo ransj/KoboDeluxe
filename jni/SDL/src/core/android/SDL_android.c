@@ -1538,6 +1538,32 @@ char * SDL_AndroidGetCachePath()
     return s_AndroidCachePath;
 }
 
+void SDL_AndroidEnterGame()
+{
+    JNIEnv *env = Android_JNI_GetEnv();
+    if (!env) {
+        return;
+    }
+    jmethodID mid = (*env)->GetStaticMethodID(env, mActivityClass, "enterGame", "()V");
+    if (!mid) {
+        return;
+    }
+    (*env)->CallStaticVoidMethod(env, mActivityClass, mid);
+}
+
+void SDL_AndroidExitGame()
+{
+    JNIEnv *env = Android_JNI_GetEnv();
+    if (!env) {
+        return;
+    }
+    jmethodID mid = (*env)->GetStaticMethodID(env, mActivityClass, "exitGame", "()V");
+    if (!mid) {
+        return;
+    }
+    (*env)->CallStaticVoidMethod(env, mActivityClass, mid);
+}
+
 #endif /* __ANDROID__ */
 
 /* vi: set ts=4 sw=4 expandtab: */

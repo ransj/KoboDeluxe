@@ -38,6 +38,10 @@
 #include "radar.h"
 #include "random.h"
 
+#ifdef __ANDROID__
+#include "SDL_compat.h"
+#endif
+
 // -1 to query the current
 #define SDL_GRAB_QUERY -1
 
@@ -347,6 +351,9 @@ void st_game_t::enter()
 	if(prefs->mousecapture)
 		if(SDL_ShowCursor(SDL_GRAB_QUERY) != SDL_TRUE)
 			SDL_SetRelativeMouseMode(SDL_TRUE);
+#ifdef __ANDROID__
+	SDL_AndroidEnterGame();
+#endif
 }
 
 
@@ -357,6 +364,9 @@ void st_game_t::leave()
 	st_intro_title.inext = &st_intro_instructions;
 	st_intro_title.duration = INTRO_TITLE_TIME + 2000;
 	st_intro_title.mode = 0;
+#ifdef __ANDROID__
+	SDL_AndroidExitGame();
+#endif
 }
 
 
@@ -372,6 +382,9 @@ void st_game_t::reenter()
 	if(prefs->mousecapture)
 		if(SDL_ShowCursor(SDL_GRAB_QUERY) != SDL_TRUE)
 			SDL_SetRelativeMouseMode(SDL_TRUE);
+#ifdef __ANDROID__
+	SDL_AndroidEnterGame();
+#endif
 }
 
 
@@ -382,10 +395,14 @@ void st_game_t::press(int button)
 	{
 	  case BTN_EXIT:
 		gsm.push(&st_main_menu);
+#ifdef __ANDROID__
+	SDL_AndroidExitGame();
+#endif
 		break;
 	  case BTN_CLOSE:
 #ifdef __ANDROID__
 		gsm.push(&st_main_menu);
+		SDL_AndroidExitGame();
 #else
 		gsm.push(&st_ask_exit);
 #endif
@@ -394,6 +411,9 @@ void st_game_t::press(int button)
 	  case BTN_START:
 	  case BTN_PAUSE:
 		gsm.push(&st_pause_game);
+#ifdef __ANDROID__
+	SDL_AndroidExitGame();
+#endif
 		break;
 	}
 }

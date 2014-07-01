@@ -41,6 +41,7 @@ public class SDLActivity extends Activity {
     protected static SDLSurface mSurface;
     protected static View mTextEdit;
     protected static ViewGroup mLayout;
+    protected static GestureView mGV;
     protected static SDLJoystickHandler mJoystickHandler;
 
     // This is what SDL runs in. It invokes SDL_main(), eventually
@@ -65,6 +66,7 @@ public class SDLActivity extends Activity {
         // Otherwise, when exiting the app and returning to it, these variables *keep* their pre exit values
         mSingleton = null;
         mSurface = null;
+        mGV = null;
         mTextEdit = null;
         mLayout = null;
         mJoystickHandler = null;
@@ -100,8 +102,8 @@ public class SDLActivity extends Activity {
         mLayout.addView(mSurface);
         getLayoutInflater().inflate(R.layout.joystick, mLayout);
         setContentView(mLayout);
-        GestureView gv = (GestureView) findViewById(R.id.joystick_view);
-        gv.setOnDirectionChangedListener(new onDirectionChangedListener() {
+        mGV = (GestureView) findViewById(R.id.joystick_view);
+        mGV.setOnDirectionChangedListener(new onDirectionChangedListener() {
 			
 			@Override
 			public void onDirectionChanged(int direction, MotionEvent event) {
@@ -588,14 +590,14 @@ public class SDLActivity extends Activity {
      * 进入游戏
      */
     public static void enterGame(){
-    	
+    	mGV.setIsFlingOnlyMode(false);
     }
     
     /**
      * 退出游戏
      */
     public static void exitGame(){
-    	
+    	mGV.setIsFlingOnlyMode(true);
     }
     
 }
