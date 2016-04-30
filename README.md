@@ -19,10 +19,6 @@ ScreenShots
 
 ![alt tag](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164535.png)
 
-Video 
-
-[![ScreenShot](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164344.png)](https://www.youtube.com/watch?v=ufaK_Hd6BpI)
-
 Instructions
 
 1. Clone this project use git
