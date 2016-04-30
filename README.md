@@ -3,6 +3,7 @@ Android version of Kobo Deluxe. Kobo Deluxe is a famous、open source game base 
 Offical home of Kobo Deluxe : http://olofson.net/kobodl/
 
 This project depends on these projects below : 
+
 1. Kobo Deluxe  : http://olofson.net/kobodl/
 2. SDL 2.0      : https://www.libsdl.org/
 3. SDL Image    : https://www.libsdl.org/projects/SDL_image/
@@ -10,6 +11,7 @@ This project depends on these projects below :
 
 
 Instructions
+
 1. Clone this project use git
 2. Import project to Android studio
 3. run command "./gradlew clean build" in terminal
