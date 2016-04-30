@@ -9,6 +9,19 @@ This project depends on these projects below :
 3. SDL Image    : https://www.libsdl.org/projects/SDL_image/
 4. Android      : https://www.android.com/
 
+ScreenShots
+
+![alt tag](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164344.png)
+
+![alt tag](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164425.png)
+
+![alt tag](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164457.png)
+
+![alt tag](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164535.png)
+
+Video 
+
+[![ScreenShot](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164344.png)](https://www.youtube.com/watch?v=ufaK_Hd6BpI)
 
 Instructions
 
