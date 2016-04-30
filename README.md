@@ -19,6 +19,11 @@ ScreenShots
 
 ![alt tag](https://github.com/ransj/KoboDeluxe/blob/master/screenshot/device-2016-04-30-164535.png)
 
+Release 
+
+V1.0 : https://github.com/ransj/KoboDeluxe/releases/download/1.0/kobodeluxe-release-1.0.apk
+
+
 Instructions
 
 1. Clone this project use git
